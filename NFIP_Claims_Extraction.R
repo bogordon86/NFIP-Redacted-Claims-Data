@@ -5,6 +5,7 @@ library(SparkR)
 
 
 #initiate Session
+#You need to specify how much RAM your laptop has because sparkR will guess (defaults to 40% RAM usage)
 #sparkR.session()
 sparkR.session(master = "local[*]", sparkConfig = list(spark.driver.memory = "64g"))
 
@@ -21,7 +22,7 @@ clm <- read.df(paste(nfipdir, "openFEMA_claims20190831.csv", sep ="\\"),
 head(clm)
 
 
-#Filter by state
+#Filter by Year
 clmfiveyr <- filter(clm, clm$yearofloss > "2015")
 
 #Explore filtered data
